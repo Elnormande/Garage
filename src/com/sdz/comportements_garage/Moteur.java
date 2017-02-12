@@ -12,8 +12,8 @@ public abstract class Moteur{
 		prix = 0;
 	}
 	
-	//Contructeur avec param
-	Moteur(String pcylindre, double pprix, TypeMoteur ptype){
+	//Contructeurs avec param
+	public Moteur(String pcylindre, double pprix, TypeMoteur ptype){
 		this.cylindre=pcylindre;
 		this.prix=pprix;		
 		this.typemot = ptype;
