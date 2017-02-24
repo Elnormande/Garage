@@ -1,6 +1,8 @@
 package com.sdz.comportements_garage;
 
-public enum Marque {
+import java.io.Serializable;
+
+public enum Marque implements Serializable{
 	
 	RENO("Renault"),
 	PIGEOT("Pigeot");

@@ -1,10 +1,15 @@
 package com.sdz.comportements_garage;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 import com.sdz.comportements_garage.Option;
 import com.sdz.comportements_garage.Moteur;
 
-public class Vehicule{
+public abstract class Vehicule implements Serializable{
+/**
+	 * 
+	 */
+private static final long serialVersionUID = 1L;
 private double prix;
 private String nom;
 private Marque nomMarque;
@@ -41,12 +46,15 @@ public Vehicule(double prix, String nom, Marque nomMarque){
 	public String toString(){
 		String STR = "Voiture "+getMarque()+" : "+getNom()+" moteur "+motmot.toString()+" ("+prix+"€) [";
 		String listobjt = "";
+		//int i =0;
 		double totalopt=0;
+//		ListIterator itr=optionsListe.listIterator();
+		
 		for (Option opt:optionsListe){
 			totalopt +=opt.getPrix();
 			listobjt = ""+listobjt+" "+opt.toString()+"";
-		}
-		return	STR +listobjt +"]caisse d'une valeur totale de "+(prix+totalopt)+"";
+			}
+		return	STR +listobjt +"] caisse d'une valeur totale de "+(prix+totalopt)+"€.\n";
 	}
 	
 	public Marque getMarque(){

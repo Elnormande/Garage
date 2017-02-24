@@ -1,6 +1,12 @@
 package com.sdz.comportements_garage;
 
-public abstract class Moteur{
+import java.io.Serializable;
+
+public abstract class Moteur implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7312171877829525197L;
 	public String cylindre;	
 	public double prix;
 	public TypeMoteur typemot;
