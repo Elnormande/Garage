@@ -1,6 +1,8 @@
 package com.sdz.comportements_garage;
 
-public class MoteurDiesel extends Moteur{
+import java.io.Serializable;
+
+public class MoteurDiesel extends Moteur implements Serializable{
 
 	/**
 	 * 

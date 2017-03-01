@@ -12,21 +12,20 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Garage {
-	
-	private ArrayList<Vehicule> listVoit;
 	File file = new File("Enregistrement Garage.txt");
 
-//Constructeur garage, à chaque instanciation, on vérifie sur le fichier existe
+	private ArrayList<Vehicule> listVoit= new ArrayList<Vehicule>();
+	public 	ObjectInputStream ois;
+	public 	ObjectOutputStream ous;
+	
+//Constructeur garage, à chaque instanciation, on vérifie sur le fichier existe et on stocke le contenu du garage txt dans un arraylist
 	public Garage(){
 		
-//  Vérifie que le fichier garage existe   
 		try {
-	        ObjectInputStream ois = new ObjectInputStream(
-	                new BufferedInputStream(
-	                    new FileInputStream(file)));
+	        ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
 	
- //Charge la liste des voitures dans listVoit
-	        this.listVoit = (ArrayList<Vehicule>)ois.readObject();
+ //Charge la liste des voitures dans listVoit depuis le fichier
+	        listVoit = (ArrayList<Vehicule>)ois.readObject();
 	        ois.close();
 	        }
 	    catch (ClassNotFoundException e) {
@@ -34,34 +33,73 @@ public class Garage {
 	    } 
 	    catch(FileNotFoundException e){
 	    	e.printStackTrace();
-	    	System.out.println("Le garage est vide");
+	    	System.out.println("Il n'existe pas de garage !");
 	    }	    
 		catch (IOException e) {
 			e.printStackTrace();
 	    }
-} 
- 
+		finally{
+			try{
+				if (ois!=null)
+					ois.close();
+					}
+				catch (final IOException e){
+				e.printStackTrace();
+				}
+			}
+		if (listVoit.isEmpty()==true)
+			System.out.println("Le garage est vide...");
+		}
+		
+//Ajout d'une voiture au garage 
 		public void add(Vehicule voiture){
-	  		listVoit.add(voiture);
-		      try {
+
+			//Chargement garage stocké dans le fichier dans un nouveau ArrayList			
+			try {
+		        ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
+		        //Charge la liste des voitures dans listVoit depuis le fichier
+		        listVoit = (ArrayList<Vehicule>)ois.readObject();
+		        ois.close();
+		        }
+		    catch (ClassNotFoundException e) {
+		        e.printStackTrace();
+		    }
+			catch (FileNotFoundException e){
+		    	e.printStackTrace();
+		    	System.out.println("Il n'existe pas de garage !");
+		    }	    
+			catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
+			try {
 				ObjectOutputStream oos = new ObjectOutputStream(
 				          new BufferedOutputStream(
 				              new FileOutputStream(file)));
-				oos.writeObject(listVoit);
+				//ajout de voiture dans le garage si elle n'est pas déjà existante
+				if(listVoit.contains(voiture)==false){
+					listVoit.add(voiture);
+					oos.writeObject(listVoit);
+				}
 				oos.close();
 		      } 
-		      catch (IOException e) {
-				e.printStackTrace();
+		      catch (IOException e1) {
+				e1.printStackTrace();
 			}
 		}
 		
 		public String toString(){
-		    String str=("Garage Openclassrooms \n************************\nContenu de notre garage :\n");
-			for(Vehicule v : listVoit){
-		    	str += v.toString();
+		    String str=("\n*************************\n* Garage Openclassrooms *\n*************************\nContenu de notre garage :\n");
+//si la liste de voiture du garage n'est pas vide, on la parcourt pour former le message decrivant le contenu du garage
+		    if(listVoit.isEmpty()==false) 
+				for(Vehicule v : listVoit){
+			    	str += v.toString();
+			    }
+		    else{
+		    	str += "le garage est vide";
 		    }
+		    System.out.println(str);
 			return str;
 		}
  }
-
-

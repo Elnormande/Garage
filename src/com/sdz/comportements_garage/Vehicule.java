@@ -6,9 +6,7 @@ import com.sdz.comportements_garage.Option;
 import com.sdz.comportements_garage.Moteur;
 
 public abstract class Vehicule implements Serializable{
-/**
-	 * 
-	 */
+
 private static final long serialVersionUID = 1L;
 private double prix;
 private String nom;
