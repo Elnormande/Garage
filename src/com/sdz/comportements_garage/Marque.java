@@ -5,7 +5,8 @@ import java.io.Serializable;
 public enum Marque implements Serializable{
 	
 	RENO("Renault"),
-	PIGEOT("Pigeot");
+	PIGEOT("Pigeot"),
+	TROEN("Troen");
 	
 	//initialisation
 	private String marque = "";

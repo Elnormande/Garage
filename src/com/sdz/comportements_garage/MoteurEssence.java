@@ -18,8 +18,5 @@ public class MoteurEssence extends Moteur implements Serializable{
 	this.puissance=patate;
 	this.prixmot=prixmot;
 	this.typemot=TypeMoteur.ESSENCE;
-
-
-	System.out.println("je suis un moteur essence");
 	}
 }

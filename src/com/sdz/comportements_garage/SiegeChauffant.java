@@ -11,12 +11,11 @@ public class SiegeChauffant implements Option {
 		this.Prix = 2500.25;
 	}
 
-
 	public double getPrix() {
 		return Prix;
 	}
 
-	public String toSting(){
-		return "Siège Chauffant ("+Prix+"€)";
+	public String toString(){
+		return "Sièges Chauffants ("+Prix+"€)";
 	}
 }

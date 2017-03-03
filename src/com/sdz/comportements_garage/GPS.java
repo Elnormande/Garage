@@ -18,5 +18,4 @@ public class GPS implements Option{
 	public String toString(){
 		return "GPS ("+Prix+"€)";
 	}
-	
 }

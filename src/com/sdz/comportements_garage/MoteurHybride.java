@@ -2,7 +2,7 @@ package com.sdz.comportements_garage;
 
 import java.io.Serializable;
 
-public class MoteurDiesel extends Moteur implements Serializable{
+public class MoteurHybride extends Moteur implements Serializable{
 
 	/**
 	 * 
@@ -12,9 +12,9 @@ public class MoteurDiesel extends Moteur implements Serializable{
 	public double prixmot;
 	
 	//constructeur
-	MoteurDiesel(String patate, double prixmot){
+	MoteurHybride(String patate, double prixmot){
 	this.puissance=patate;
 	this.prixmot=prixmot;
-	this.typemot=TypeMoteur.DIESEL;
+	this.typemot=TypeMoteur.HYBRIDE;
 	}
 }

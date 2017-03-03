@@ -2,6 +2,7 @@ package com.sdz.comportements_garage;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,7 +20,8 @@ public class Garage {
 	public 	ObjectOutputStream ous;
 	
 //Constructeur garage, à chaque instanciation, on vérifie sur le fichier existe et on stocke le contenu du garage txt dans un arraylist
-	public Garage(){
+
+	public Garage() {
 		
 		try {
 	        ois = new ObjectInputStream(new BufferedInputStream(new FileInputStream(file)));
@@ -28,31 +30,23 @@ public class Garage {
 	        listVoit = (ArrayList<Vehicule>)ois.readObject();
 	        ois.close();
 	        }
-	    catch (ClassNotFoundException e) {
+	    catch (ClassNotFoundException e) {//en cas de désérialisation d'une classe
 	        e.printStackTrace();
 	    } 
 	    catch(FileNotFoundException e){
 	    	e.printStackTrace();
-	    	System.out.println("Il n'existe pas de garage !");
-	    }	    
-		catch (IOException e) {
+	    	System.out.println("Il n'existe pas de fichier de garage sauvegardé!");
+	    } catch (EOFException e) {  //si l'ois est vide
+			System.err.println("Le garage est vide...");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-	    }
-		finally{
-			try{
-				if (ois!=null)
-					ois.close();
-					}
-				catch (final IOException e){
-				e.printStackTrace();
-				}
-			}
-		if (listVoit.isEmpty()==true)
-			System.out.println("Le garage est vide...");
 		}
-		
+	}
+
 //Ajout d'une voiture au garage 
-		public void add(Vehicule voiture){
+
+		public void addVoiture(Vehicule voiture){
 
 			//Chargement garage stocké dans le fichier dans un nouveau ArrayList			
 			try {
@@ -67,7 +61,10 @@ public class Garage {
 			catch (FileNotFoundException e){
 		    	e.printStackTrace();
 		    	System.out.println("Il n'existe pas de garage !");
-		    }	    
+		    } 
+			catch (EOFException e) {  //si l'ois est vide
+				System.out.println("Le garage est vide au moment d'ajouter des choses dedans...");
+			}	    
 			catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -78,11 +75,12 @@ public class Garage {
 				          new BufferedOutputStream(
 				              new FileOutputStream(file)));
 				//ajout de voiture dans le garage si elle n'est pas déjà existante
+
 				if(listVoit.contains(voiture)==false){
 					listVoit.add(voiture);
 					oos.writeObject(listVoit);
+					oos.close();
 				}
-				oos.close();
 		      } 
 		      catch (IOException e1) {
 				e1.printStackTrace();
@@ -96,10 +94,6 @@ public class Garage {
 				for(Vehicule v : listVoit){
 			    	str += v.toString();
 			    }
-		    else{
-		    	str += "le garage est vide";
-		    }
-		    System.out.println(str);
 			return str;
 		}
  }
