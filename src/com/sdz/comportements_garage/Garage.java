@@ -62,8 +62,7 @@ public class Garage {
 		    	e.printStackTrace();
 		    	System.out.println("Il n'existe pas de garage !");
 		    } 
-			catch (EOFException e) {  //si l'ois est vide
-				System.out.println("Le garage est vide au moment d'ajouter des choses dedans...");
+			catch (EOFException e) {  //si l'ois est vide Le garage est vide au moment d'ajouter des choses dedans...
 			}	    
 			catch (IOException e) {
 				e.printStackTrace();
@@ -74,7 +73,7 @@ public class Garage {
 				ObjectOutputStream oos = new ObjectOutputStream(
 				          new BufferedOutputStream(
 				              new FileOutputStream(file)));
-				//ajout de voiture dans le garage si elle n'est pas déjà existante
+				//ajout de voiture dans le garage si elle n'est pas déjà existante mais ne semble pas fonctionner ^^'
 
 				if(listVoit.contains(voiture)==false){
 					listVoit.add(voiture);

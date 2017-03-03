@@ -37,17 +37,15 @@ public Vehicule(double prix, String nom, Marque nomMarque){
 		
 //Méthod de class
 	public double getPrix() {
-		// TODO Auto-generated method stub
 		return prix;
 	}
 
 	public String toString(){
 		String STR = "Voiture "+getMarque()+" : "+getNom()+" moteur "+motmot.toString()+" ("+prix+"€) [";
 		String listobjt = "";
-		//int i =0;
 		double totalopt=0;
-//		ListIterator itr=optionsListe.listIterator();
-		
+
+		//boucle qui parcourt les options calcule le prix total et renvoie un string avec la liste d'option
 		for (Option opt:optionsListe){
 			totalopt +=opt.getPrix();
 			listobjt = ""+listobjt+" "+opt.toString()+"";
@@ -67,9 +65,8 @@ public Vehicule(double prix, String nom, Marque nomMarque){
         return optionsListe;
     }
 	
+	// non utilisé...
 	public ArrayList<Option> getOptions(){
-		for (Option opt:optionsListe)
-			System.out.println(""+opt+"");
 		return optionsListe;
 	}
 
