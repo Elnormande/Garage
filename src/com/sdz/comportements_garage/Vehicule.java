@@ -46,9 +46,11 @@ public Vehicule(double prix, String nom, Marque nomMarque){
 		double totalopt=0;
 
 		//boucle qui parcourt les options calcule le prix total et renvoie un string avec la liste d'option
-		for (Option opt:optionsListe){
-			totalopt +=opt.getPrix();
-			listobjt = ""+listobjt+" "+opt.toString()+"";
+		for (int i=0; i<optionsListe.size();i++){
+			totalopt +=optionsListe.get(i).getPrix();
+			if (i==0)
+					listobjt = ""+listobjt+" "+optionsListe.get(i).toString()+"";
+			else listobjt = ""+listobjt+", "+optionsListe.get(i).toString()+"";
 			}
 		return	STR +listobjt +"] caisse d'une valeur totale de "+(prix+totalopt)+"€.\n";
 	}
