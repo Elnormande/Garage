@@ -7,12 +7,12 @@ import com.sdz.comportements_garage.Moteur;
 
 public abstract class Vehicule implements Serializable{
 
-private static final long serialVersionUID = 1L;
-private double prix;
-private String nom;
-private Marque nomMarque;
-private ArrayList<Option> optionsListe;
-public Moteur motmot;
+protected Double prix;
+protected String nom;
+protected Marque nomMarque;
+protected ArrayList<Option> optionsListe;
+protected Moteur motmot;
+protected Marque Marque;
 
 
 //contructeur par default	
@@ -22,7 +22,7 @@ public Vehicule(){}
 public Vehicule(double prix, String nom, Marque nomMarque, ArrayList<Option> optionsl) {
 	this.prix=prix;
 	this.nom=nom;
-	this.nomMarque=nomMarque;
+	this.Marque=nomMarque;
 	this.optionsListe=optionsl;
 	optionsListe=new ArrayList<Option>();	
 }
@@ -31,7 +31,7 @@ public Vehicule(double prix, String nom, Marque nomMarque, ArrayList<Option> opt
 public Vehicule(double prix, String nom, Marque nomMarque){
 	this.prix=prix;
 	this.nom=nom;
-	this.nomMarque=nomMarque;
+	this.Marque=nomMarque;
 	optionsListe=new ArrayList<Option>();	
 }
 		
@@ -41,7 +41,7 @@ public Vehicule(double prix, String nom, Marque nomMarque){
 	}
 
 	public String toString(){
-		String STR = "Voiture "+getMarque()+" : "+getNom()+" moteur "+motmot.toString()+" ("+prix+"€) [";
+		String STR = "Voiture "+Marque+" : "+nom+" moteur "+motmot.toString()+" ("+prix+"€) [";
 		String listobjt = "";
 		double totalopt=0;
 
