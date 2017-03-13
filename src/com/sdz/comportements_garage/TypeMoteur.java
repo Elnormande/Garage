@@ -1,6 +1,8 @@
 package com.sdz.comportements_garage;
 
-public enum TypeMoteur {
+import java.io.Serializable;
+
+public enum TypeMoteur implements Serializable{
 
 	DIESEL("Diesel"),
 	ESSENCE("Essence"),

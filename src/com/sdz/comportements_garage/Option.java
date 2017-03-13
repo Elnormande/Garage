@@ -1,7 +1,9 @@
 package com.sdz.comportements_garage;
 
-public interface Option {
-	double prix=0;	
-	public double getPrix();
+import java.io.Serializable;
+
+public interface Option extends Serializable{
+	
+	public Double getPrix();
 	public String toString();
 }

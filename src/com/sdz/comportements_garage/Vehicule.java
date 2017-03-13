@@ -1,15 +1,18 @@
 package com.sdz.comportements_garage;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 import com.sdz.comportements_garage.Option;
 import com.sdz.comportements_garage.Moteur;
 
-public class Vehicule{
-private double prix;
-private String nom;
-private Marque nomMarque;
-private ArrayList<Option> optionsListe;
-public Moteur motmot;
+public abstract class Vehicule implements Serializable{
+
+protected Double prix;
+protected String nom;
+protected Marque nomMarque;
+protected ArrayList<Option> optionsListe;
+protected Moteur motmot;
+protected Marque Marque;
 
 
 //contructeur par default	
@@ -19,7 +22,7 @@ public Vehicule(){}
 public Vehicule(double prix, String nom, Marque nomMarque, ArrayList<Option> optionsl) {
 	this.prix=prix;
 	this.nom=nom;
-	this.nomMarque=nomMarque;
+	this.Marque=nomMarque;
 	this.optionsListe=optionsl;
 	optionsListe=new ArrayList<Option>();	
 }
@@ -28,25 +31,28 @@ public Vehicule(double prix, String nom, Marque nomMarque, ArrayList<Option> opt
 public Vehicule(double prix, String nom, Marque nomMarque){
 	this.prix=prix;
 	this.nom=nom;
-	this.nomMarque=nomMarque;
+	this.Marque=nomMarque;
 	optionsListe=new ArrayList<Option>();	
 }
 		
 //Méthod de class
 	public double getPrix() {
-		// TODO Auto-generated method stub
 		return prix;
 	}
 
 	public String toString(){
-		String STR = "Voiture "+getMarque()+" : "+getNom()+" moteur "+motmot.toString()+" ("+prix+"€) [";
+		String STR = "Voiture "+Marque+" : "+nom+" moteur "+motmot.toString()+" ("+prix+"€) [";
 		String listobjt = "";
 		double totalopt=0;
-		for (Option opt:optionsListe){
-			totalopt +=opt.getPrix();
-			listobjt = ""+listobjt+" "+opt.toString()+"";
-		}
-		return	STR +listobjt +"]caisse d'une valeur totale de "+(prix+totalopt)+"";
+
+		//boucle qui parcourt les options calcule le prix total et renvoie un string avec la liste d'option
+		for (int i=0; i<optionsListe.size();i++){
+			totalopt +=optionsListe.get(i).getPrix();
+			if (i==0)
+					listobjt = ""+listobjt+" "+optionsListe.get(i).toString()+"";
+			else listobjt = ""+listobjt+", "+optionsListe.get(i).toString()+"";
+			}
+		return	STR +listobjt +"] caisse d'une valeur totale de "+(prix+totalopt)+"€.\n";
 	}
 	
 	public Marque getMarque(){
@@ -61,9 +67,8 @@ public Vehicule(double prix, String nom, Marque nomMarque){
         return optionsListe;
     }
 	
+	// non utilisé...
 	public ArrayList<Option> getOptions(){
-		for (Option opt:optionsListe)
-			System.out.println(""+opt+"");
 		return optionsListe;
 	}
 
