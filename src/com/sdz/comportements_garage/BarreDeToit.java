@@ -7,7 +7,7 @@ public double Prix;
 		this.Prix = 400;
 	}
 	
-	public double getPrix() {
+	public Double getPrix() {
 		return Prix;
 	}
 	
